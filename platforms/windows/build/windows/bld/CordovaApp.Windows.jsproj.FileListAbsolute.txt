@@ -1,0 +1,17 @@
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\debug\anycpu\resources.pri
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\debug\anycpu\AppxManifest.xml
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\debug\anycpu\CordovaApp.Windows.build.appxrecipe
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\priconfig.xml
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\priconfig.xml.intermediate
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\layout.resfiles
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\layout.resfiles.intermediate
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\resources.resfiles
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\resources.resfiles.intermediate
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\pri.resfiles
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\pri.resfiles.intermediate
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\qualifiers.txt
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\qualifiers.txt.intermediate
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\MultipleQualifiersPerDimensionFound.txt
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\ProjectArchitectures.txt
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\package.map.txt
+C:\Users\dev\Documents\Visual Studio 2015\Projects\ciaff_app\platforms\windows\build\windows\bld\_pkginfo.txt

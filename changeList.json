@@ -1,0 +1,20 @@
+{
+  "changedFilesIos": [
+    "www\\index.html",
+    "www\\css\\style.css",
+    "www\\images\\bg.png",
+    "www\\images\\splash.png"
+  ],
+  "deletedFilesIos": [],
+  "addedPluginsIos": [],
+  "deletedPluginsIos": [],
+  "changedFiles": [
+    "www\\index.html",
+    "www\\css\\style.css",
+    "www\\images\\bg.png",
+    "www\\images\\splash.png"
+  ],
+  "deletedFiles": [],
+  "addedPlugins": [],
+  "deletedPlugins": []
+}
