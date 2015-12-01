@@ -138,7 +138,7 @@
     <!-- Cordova reference -->
     <script src="scripts/index.js"></script>
     <!-- -->
-    <ons-sliding-menu menu-page="menu.html" main-page="w elcome.html" side="left"
+    <ons-sliding-menu menu-page="menu.html" main-page="welcome.html" side="left"
                       var="menu" type="reveal" max-slide-distance="260px" swipeable="true">
     </ons-sliding-menu>
 
@@ -237,39 +237,85 @@
     </ons-template>
 
     <ons-template id="artists.html">
-			<ons-page>
-            <ons-toolbar>
-                <div class="left">
-                    <ons-toolbar-button ng-click="menu.toggle()">
-                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-                <div class="center">Artists</div>
-            </ons-toolbar>			
-            <ons-list ng-controller="MyCtrl">
-                <ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate">
+	<ons-navigator title="Navigator" var="myNavigator">
+		<ons-page>
+				<ons-toolbar>
+					<div class="left">
+						<ons-toolbar-button ng-click="menu.toggle()">
+							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+					<div class="center">Artists</div>
+				</ons-toolbar>			
+				<ons-list ng-controller="MyCtrl">
+					<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate"
+									ng-click="myNavigator.pushPage('detail.html', {item: '{{item.index}}'})">
+						<ons-row>
+							<ons-col width="80px">
+								<img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum"></img>
+							</ons-col>
+							<ons-col >
+								<header>
+									<div ng-show="item.name==''">
+										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
+									</div><span class="item-name">{{item.name}}</span>
+									<div ng-show="item.type==''">
+										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
+									</div>
+									<span class="item-type">{{item.type}}</span>
+								</header>
+								<div ng-show="item.desc==' '">
+									<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
+								</div>
+								<p class="item-desc">{{ item.desc }}</p>
+							</ons-col>
+						</ons-row>
+					</ons-list-item>
+				</ons-list>
+			</ons-page>
+		</ons-navigator>
+    </ons-template>
+	
+	 <ons-template id="detail.html">
+        <ons-page>
+		<ons-toolbar>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="center">Details</div>
+            </ons-toolbar>
+
+            <ons-list modifier="inset" style="margin-top: 10px">
+                <ons-list-item class="item">
                     <ons-row>
-                        <ons-col width="80px">
-                            <img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum"></img>
+                        <ons-col width="60px">
+                            <div class="item-thum"></div>
                         </ons-col>
-						<ons-col >
+                        <ons-col>
                             <header>
-                                <div ng-show="item.name==''">
-                                    <p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
-                                </div><span class="item-name">{{item.name}}</span>
-                                <div ng-show="item.type==''">
-                                    <p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
-                                </div>
-                                <span class="item-type">{{item.type}}</span>
+                                <span class="item-title">{{item}}</span>
+                                <span class="item-label">Label</span>
                             </header>
-                            <div ng-show="item.desc==' '">
-                                <p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
-                            </div>
-                            <p class="item-desc">{{ item.desc }}</p>
+                            <p class="item-desc">{{item.desc}}</p>
                         </ons-col>
                     </ons-row>
                 </ons-list-item>
+
+                <ons-list-item modifier="chevron" ng-click="doSomething()">
+                    <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
+                    Add a note
+                </ons-list-item>
             </ons-list>
+
+            <ons-list style="margin-top: 10px">
+                <ons-list-item class="item" ng-repeat="i in [1,2,3]">
+                    <header>
+                        <span class="item-title">Lorem ipsum dolor sit amet</span>
+                    </header>
+                    <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </ons-list-item>
+            </ons-list>
+
+            <br>
+
         </ons-page>
     </ons-template>
 	

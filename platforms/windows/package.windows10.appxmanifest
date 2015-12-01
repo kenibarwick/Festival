@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Package IgnorableNamespaces="uap mp" xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10">
-    <Identity Name="io.onsen.helloworld" Publisher="CN=$username$" Version="0.0.1.0" />
+    <Identity Name="uk.co.ciaff.app2016" Publisher="CN=$username$" Version="0.0.1.0" />
     <mp:PhoneIdentity PhoneProductId="db629030-9520-11e5-9c92-ede992fdf8b4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
     <Properties>
-        <DisplayName>Onsen UI Project</DisplayName>
-        <PublisherDisplayName>Onsen UI Team</PublisherDisplayName>
+        <DisplayName>Chilled in a Field Festival 2016</DisplayName>
+        <PublisherDisplayName>CIAFF App team</PublisherDisplayName>
         <Logo>images\StoreLogo.png</Logo>
     </Properties>
     <Dependencies>
@@ -14,8 +14,8 @@
         <Resource Language="x-generate" />
     </Resources>
     <Applications>
-        <Application Id="io.onsen.helloworld" StartPage="ms-appx-web:///www/index.html">
-            <uap:VisualElements BackgroundColor="#464646" Description="CordovaApp" DisplayName="Onsen UI Project" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
+        <Application Id="uk.co.ciaff.app2016" StartPage="ms-appx-web:///www/index.html">
+            <uap:VisualElements BackgroundColor="#464646" Description="CordovaApp" DisplayName="Chilled in a Field Festival 2016" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
                 <uap:SplashScreen Image="images\splashscreen.png" />
                 <uap:DefaultTile ShortName="Onsen UI Project" Square310x310Logo="images\Square310x310Logo.png" Square71x71Logo="images\Square71x71Logo.png" Wide310x150Logo="images\Wide310x150Logo.png" />
             </uap:VisualElements>

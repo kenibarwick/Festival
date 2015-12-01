@@ -4,7 +4,7 @@
     <ReferenceCachePath>C:\Users\dev\AppData\Local\Temp\ciaff_app_refcache</ReferenceCachePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|iOS'">
-    <DebuggerFlavor>iOSEmulatoriPhone6Plus</DebuggerFlavor>
+    <DebuggerFlavor>iOSEmulatoriPhone6</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows Phone (Universal)'">
     <DebuggerFlavor>WindowsMobileEmulator</DebuggerFlavor>
