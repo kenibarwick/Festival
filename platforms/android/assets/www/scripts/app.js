@@ -7,7 +7,7 @@ app.controller('MyCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
           itemScope.canceler = $q.defer();
 
           itemScope.item = {
-            nane: '',
+            name: '',
             type: '',
             desc: '',
             index: ''
@@ -30,7 +30,7 @@ app.controller('MyCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
         return 91;
       },
       countItems: function() {
-        return 31;
+        return 15;
       },
       destroyItemScope: function(index, itemScope) {
         itemScope.canceler.resolve();

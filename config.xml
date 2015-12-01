@@ -1,12 +1,53 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="io.onsen.helloworld" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Onsen UI Project</name>
-    <description>
-        Onsen UI project to create fancy user interfaces for hybrid mobile applications. It uses uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.
-    </description>
-    <author email="dev@onsen.io" href="http://onsen.io">
-        Onsen UI Team
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget id="uk.co.ciaff.app2016" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Chilled in a Field Festival 2016</name>
+  <description>Chilled in a Field Festival</description>
+  <author email="it@ciaff.co.uk" href="http://chilledinafieldfestival.co.uk">
+        CIAFF App team
     </author>
-    <content src="index.html" />
-    <access origin="*" />
+  <content src="index.html" />
+  <access origin="*" />
+  <preference name="KeepRunning" value="True" />
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="True" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
+  <platform name="android">
+    <!-- you can use any density that exists in the Android project -->
+    <splash src="res/screen/android/splash-land-hdpi.png" density="land-hdpi" />
+    <splash src="res/screen/android/splash-land-ldpi.png" density="land-ldpi" />
+    <splash src="res/screen/android/splash-land-mdpi.png" density="land-mdpi" />
+    <splash src="res/screen/android/splash-land-xhdpi.png" density="land-xhdpi" />
+    <splash src="res/screen/android/splash-port-hdpi.png" density="port-hdpi" />
+    <splash src="res/screen/android/splash-port-ldpi.png" density="port-ldpi" />
+    <splash src="res/screen/android/splash-port-mdpi.png" density="port-mdpi" />
+    <splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi" />
+  </platform>
+  <platform name="ios">
+    <!-- images are determined by width and height. The following are supported -->
+    <splash src="res/screen/ios/Default~iphone.png" width="320" height="480" />
+    <splash src="res/screen/ios/Default@2x~iphone.png" width="640" height="960" />
+    <splash src="res/screen/ios/Default-Portrait~ipad.png" width="768" height="1024" />
+    <splash src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048" />
+    <splash src="res/screen/ios/Default-Landscape~ipad.png" width="1024" height="768" />
+    <splash src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536" />
+    <splash src="res/screen/ios/Default-568h@2x~iphone.png" width="640" height="1136" />
+    <splash src="res/screen/ios/Default-667h.png" width="750" height="1334" />
+    <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208" />
+    <splash src="res/screen/ios/Default-Landscape-736h.png" width="2208" height="1242" />
+  </platform>
+  <platform name="wp8">
+    <!-- images are determined by width and height. The following are supported -->
+    <splash src="res/screen/wp8/SplashScreenImage.jpg" width="768" height="1280" />
+  </platform>
+  <platform name="windows8">
+    <!-- images are determined by width and height. The following are supported -->
+    <splash src="res/screen/windows8/splashscreen.png" width="620" height="300" />
+  </platform>
+  <preference name="SplashScreenDelay" value="10000" />
+  <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+    <vs:platformSpecificWidget platformName="windows">
+      <vs:name>Chilled in a Field Festival</vs:name>
+    </vs:platformSpecificWidget>
+  </vs:platformSpecificValues>
+  <preference name="BackupWebStorage" value="local" />
 </widget>
