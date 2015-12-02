@@ -91,16 +91,16 @@
             background-repeat: repeat-x;
         }
 
-            .page__background.page--menu-page__background {
-                background-image: none;
-            }
-
+		.page__background.page--menu-page__background {
+			background-image: none;
+		}
+		
         .item {
             padding: 10px;
             line-height: 1;
             height: 91px;
             overflow: hidden;
-			background-color: #79C9F0
+            background-color: transparent !important;          
         }
 
         .item-thum {
@@ -249,7 +249,7 @@
 				</ons-toolbar>			
 				<ons-list ng-controller="MyCtrl">
 					<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate"
-									ng-click="myNavigator.pushPage('detail.html', {item: '{{item.index}}'})">
+									ng-click="myNavigator.pushPage('detail.html', {item: '{{item.index}}'})" >
 						<ons-row>
 							<ons-col width="80px">
 								<img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum"></img>
@@ -286,12 +286,12 @@
             <ons-list modifier="inset" style="margin-top: 10px">
                 <ons-list-item class="item">
                     <ons-row>
-                        <ons-col width="60px">
-                            <div class="item-thum"></div>
-                        </ons-col>
+						<ons-col width="80px">
+							<img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum"></img>
+						</ons-col>
                         <ons-col>
                             <header>
-                                <span class="item-title">{{item}}</span>
+                                <span class="item-title">{{item.name}}</span>
                                 <span class="item-label">Label</span>
                             </header>
                             <p class="item-desc">{{item.desc}}</p>
