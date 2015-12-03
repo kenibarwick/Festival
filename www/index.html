@@ -10,6 +10,8 @@
     <script src="scripts/platformOverrides.js"></script>
     <script src='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/js/angular/angular.min.js'></script>
 	<script src='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/js/onsenui.min.js'></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="scripts/controller.js"></script>
 	
 	<!-- CSS dependencies -->
     <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/css/onsenui.css'>
@@ -137,6 +139,44 @@
             float: right;
         }
 		
+		.profile-wrapper {
+		  padding: 16px 10px 0 10px;
+		}
+
+		.profile-image {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 4px;
+		  -webkit-border-radius: 4px;
+		  border: inset 1px rgba(0, 0, 0, 0.3);
+		}
+
+		.profile-name {
+		  font-size: 18px;
+		  padding: 4px 0 2px 0;
+		}
+
+		.profile-email {
+		  font-size: 15px;
+		  opacity: 0.4;
+		}
+
+		.switch--list-item {
+		  margin-right: 0px;
+		}
+
+		.settings-header {
+		  font-weight: 500;
+		  font-size: 14px;
+		  opacity: 0.4;
+		  padding: 10px 0 0px 10px;
+		  margin-bottom: -4px;
+		}
+
+		.settings-list {
+		  margin-top: 10px;
+		}
+		
 		</style>
 
 </head>
@@ -200,7 +240,7 @@
             <br>
 
             <ons-list class="bottom-menu-list">
-                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">                    
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('location.html', {closeMenu: true})">                    
 					<ons-row>
 						<ons-col width="40px">
 							<ons-icon icon="fa-location-arrow"></ons-icon>
@@ -211,18 +251,18 @@
 					</ons-row>	
                 </ons-list-item>
 
-                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('sitemap.html', {closeMenu: true})">
                     <ons-row>
 						<ons-col width="40px">
 							<ons-icon icon="fa-map-marker"></ons-icon>
 						</ons-col>
 						<ons-col width="80px">
-							Site Map			
+							Site Map
 						</ons-col>  
 					</ons-row>
                 </ons-list-item>
 
-                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('about.html', {closeMenu: true})">
                    <ons-row>
 						<ons-col width="40px">
 							 <ons-icon icon="fa-info-circle"></ons-icon>
@@ -233,6 +273,19 @@
 					</ons-row>
                 </ons-list-item>
             </ons-list>
+			
+				<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('settings.html', {closeMenu: true})">
+                   <ons-row>
+						<ons-col width="40px">
+							 <ons-icon icon="fa-cog"></ons-icon>
+						</ons-col>
+						<ons-col width="80px">
+							Settings			
+						</ons-col>  
+					</ons-row>
+                </ons-list-item>
+            </ons-list>
+			
         </ons-page>
     </ons-template>
 	
@@ -393,7 +446,149 @@
 		<p style="padding-top: 100px; color: #999; text-align: center">Sunday</p>
 	</ons-template>
 
+    <ons-template id="location.html">
+		<ons-navigator ng-controller="MapController">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Location</div>
+            </ons-toolbar>
+        
+        <div id="map_canvas"></div>
+        
+        <p class="par-search">
+            <input type="search" class="search-input search-input-map">
+        </p>
+        
+        <p class="par-buttons">
+            <ons-button  class="btn-delete" ng-click="deleteAllMarkers()">
+                Delete all markers        
+            </ons-button>
+            <ons-button class="btn-distance" ng-click="calculateDistance()">
+                Distance      
+            </ons-button>
+        </p>   
+    </ons-page>
+</ons-navigator>
+    </ons-template>
 
+    <ons-template id="sitemap.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Site Map</div>
+            </ons-toolbar>
+
+
+            <ons-row style="margin-top: 100px; text-align: center;">
+                <ons-col>
+					<img src="images/siteMap.jpg"/>  
+                </ons-col>
+            </ons-row>
+
+        </ons-page>
+    </ons-template>
+
+	    <ons-template id="about.html">
+        <ons-page>
+       			<ons-tabbar>
+				<ons-tab page="ciaff.html" label="Chilled in a Field Festival" active="true">
+					Chilled in a Field Festival
+				</ons-tab>
+				<ons-tab page="app.html" label="App">
+					Application
+				</ons-tab>				
+			</ons-tabbar>
+			<ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">About</div>
+            </ons-toolbar>
+
+
+            <ons-row style="margin-top: 100px; text-align: center;">
+                <ons-col>
+					About this app and ciaff content here
+                </ons-col>
+            </ons-row>
+
+        </ons-page>
+    </ons-template>
+
+	<ons-template id="ciaff.html">
+		<p style="padding-top: 100px; color: #999; text-align: center">ciaff</p>
+	</ons-template>
+	<ons-template id="app.html">
+		<p style="padding-top: 100px; color: #999; text-align: center">app</p>
+	</ons-template>
+	
+    <ons-template id="settings.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Settings</div>
+            </ons-toolbar>
+
+      <ons-row class="profile-wrapper">
+        <ons-col width="60px" class="profile-image-wrapper">
+          <img src="images/profile.jpg" class="profile-image">
+        </ons-col>
+
+        <ons-col>
+          <div class="profile-name">Keni Barwick</div>
+          <div class="profile-email">keni@barwick.net</div>
+        </ons-col>
+
+      </ons-row>
+
+      <div class="settings-header">Share</div>
+
+      <ons-list modifier="inset" class="settings-list" >
+        <ons-list-item>
+          <ons-icon icon="fa-twitter" style="opacity: 0.8"></ons-icon> Twitter
+          <ons-switch modifier="list-item"></ons-switch>
+        </ons-list-item>
+
+        <ons-list-item>
+          <ons-icon icon="fa-facebook" style="opacity: 0.8"></ons-icon> Facebook
+          <ons-switch modifier="list-item" checked></ons-switch>
+        </ons-list-item>
+      </ons-list>
+
+      <div class="settings-header">Notifications</div>
+		
+		<ons-list modifier="inset" class="settings-list">
+        <ons-list-item>
+          <ons-icon icon="fa-paper-plane" style="opacity: 0.8"></ons-icon> Notifications
+          <ons-switch modifier="list-item" checked></ons-switch>
+        </ons-list-item>
+      </ons-list>
+      <br>
+
+      <ons-list modifier="inset" class="settings-list">
+        <ons-list-item modifier="tappable">
+          <ons-icon icon="fa-sign-out" style="opacity: 0.8"></ons-icon>
+          Sign out
+        </ons-list-item>
+      </ons-list>
+
+        </ons-page>
+    </ons-template>
 	
 </body>
 </html>
