@@ -5,8 +5,22 @@
 (function () {
     "use strict";
 
-    document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
+document.addEventListener('deviceready', function () {
+  // Enable to debug issues.
+  window.plugins.OneSignal.setLogLevel({logLevel: 6, visualLevel: 6});
+  
+  var notificationOpenedCallback = function(jsonData) {
+    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+  };
 
+  window.plugins.OneSignal.init("1333050c-8c04-4ee1-86e6-3e7dc78686ca",
+                                 {googleProjectNumber: "298045474104"},
+                                 notificationOpenedCallback);
+  
+  // Show an alert box if a notification comes in when the user is in your app.
+  window.plugins.OneSignal.enableInAppAlertNotification(true);
+}, false);
+	
     function onDeviceReady() {
         // Handle the Cordova pause and resume events
         document.addEventListener( 'pause', onPause.bind( this ), false );
@@ -66,9 +80,8 @@
       }
     };
   }]);
-
+  
 	// controller.js
-
     //Sliding menu controller, swiping management
     app.controller('SlidingMenuController', function($scope){
       
@@ -83,8 +96,8 @@
         };
       
         $scope.checkSlidingMenuStatus();
-    });
-
+    });	
+	
     //Map controller
     app.controller('MapController', function($scope, $timeout){
       

@@ -331,7 +331,7 @@
 								<header>
 									<div ng-show="item.name==''">
 										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
-									</div><span class="item-name">{{item.name}}</span>
+									</div><span class="item-name" data-autodividers="true";>{{item.name}}</span>
 									<div ng-show="item.type==''">
 										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
 									</div>
@@ -354,6 +354,7 @@
 		<ons-toolbar>
                 <div class="left"><ons-back-button>Back</ons-back-button></div>
                 <div class="center">Details</div>
+				<div class="right"><ons-icon icon="fa-favourite"></ons-icon></div>
             </ons-toolbar>
 
             <ons-list modifier="inset" style="margin-top: 10px">

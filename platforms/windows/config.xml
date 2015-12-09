@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="uk.co.ciaff.app2016" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="WindowsToastCapable" value="true" />
+    <feature name="OneSignalPush">
+        <param name="ios-package" value="OneSignalPush" />
+    </feature>
     <splash height="300" src="res/screen/windows8/splashscreen.png" width="620" />
     <name>Chilled in a Field Festival 2016</name>
     <description>Chilled in a Field Festival</description>

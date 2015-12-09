@@ -6,6 +6,13 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {},
+    "installed_plugins": {
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "Chilled in a Field Festival 2016"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "Chilled in a Field Festival 2016"
+        }
+    },
     "dependent_plugins": {}
 }
