@@ -12,6 +12,9 @@
         },
         "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "Chilled in a Field Festival 2016"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "Chilled in a Field Festival 2016"
         }
     },
     "dependent_plugins": {}

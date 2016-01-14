@@ -7,11 +7,11 @@
         "files": {}
     },
     "installed_plugins": {
-        "phonegap-plugin-push": {
-            "PACKAGE_NAME": "uk.co.ciaff.app2016"
-        },
         "onesignal-cordova-plugin": {
-            "PACKAGE_NAME": "uk.co.ciaff.app2016"
+            "PACKAGE_NAME": "uk.co.ciaff.cordova2016"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "uk.co.ciaff.cordova2016"
         }
     },
     "dependent_plugins": {}

@@ -12,6 +12,9 @@
         },
         "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "uk.co.ciaff.app2016"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "uk.co.ciaff.app2016"
         }
     },
     "dependent_plugins": {}
