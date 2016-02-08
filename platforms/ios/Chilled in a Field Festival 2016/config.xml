@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="uk.co.ciaff.app2016" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="uk.co.ciaff.cordova2016" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />
@@ -37,6 +37,8 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-intent href="*" />
     <preference name="KeepRunning" value="True" />
     <preference name="ShowTitle" value="True" />
     <preference name="InAppBrowserStorageEnabled" value="True" />

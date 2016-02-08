@@ -1,4 +1,4 @@
-﻿cordova.define('cordova/plugin_list', function(require, exports, module) {
+cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
         "file": "plugins/phonegap-plugin-push/www/push.js",
@@ -37,7 +37,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "phonegap-plugin-push": "1.4.5",
-    "onesignal-cordova-plugin": "1.9.4"
+    "onesignal-cordova-plugin": "1.9.4",
+    "cordova-plugin-whitelist": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

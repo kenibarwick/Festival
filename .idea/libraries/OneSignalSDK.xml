@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="OneSignalSDK">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/plugins/onesignal-cordova-plugin/src/android/libs/OneSignalSDK.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

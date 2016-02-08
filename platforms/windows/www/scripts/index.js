@@ -1,4 +1,4 @@
-﻿// For an introduction to the Blank template, see the following documentation:
+// For an introduction to the Blank template, see the following documentation:
 // http://go.microsoft.com/fwlink/?LinkID=397704
 // To debug code on page load in Ripple or on Android devices/emulators: launch your app, set breakpoints,
 // and then run "window.location.reload()" in the JavaScript Console.
@@ -38,33 +38,45 @@ document.addEventListener('deviceready', function () {
         // TODO: This application has been reactivated. Restore application state here.
     };
 	
-	app.controller('MyCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
-
+	app.controller('MyCtrl', ['$scope', '$http', '$q', '$rootScope', function($scope, $http, $q, $rootScope) {	
+	$rootScope.itemScope = {};
     $scope.MyDelegate = {
       configureItemScope: function(index, itemScope) {
         if (!itemScope.item) {
-          console.log("Created item #" + index);
+          // console.log("Created item #" + index);
           itemScope.canceler = $q.defer();
 
           itemScope.item = {
             name: '',
-            type: '',
             desc: '',
+			day: '',
+			start: '',
+			end: '',
+			location: '',
+			type: '',
             index: ''
           };
-                    $http.get('http://ciafadmin.herokuapp.com/api/schedule', 
-                    {
-                       timeout: itemScope.canceler.promise
-                    }).success(function (data) {
-						if(data[index].name)
-                        itemScope.item.name = data[index].name;
-                        itemScope.item.type = data[index].type;
-                        itemScope.item.desc = data[index].description;
-                        itemScope.item.index = index;
-                    }).error(function () {
-                        itemScope.item.desc = 'No bacon lorem ipsum';
-                        itemScope.item.type = 'No bacon'
-                    });
+		  // console.log($rootScope, '>>>>>');
+			$http.get('http://ciafadmin.herokuapp.com/api/schedule', 
+			{
+			   timeout: itemScope.canceler.promise
+			}).success(function (data) {
+				if(data[index].name)
+				{
+					itemScope.item.name = data[index].name;
+					itemScope.item.desc = data[index].description;
+					itemScope.item.day = data[index].day;
+					itemScope.item.start = data[index].start;
+					itemScope.item.end = data[index].end;
+					itemScope.item.location = data[index].location;
+					itemScope.item.type = data[index].type;
+					itemScope.item.index = index;					
+				}
+				
+			}).error(function () {
+				itemScope.item.desc = 'Something went wrong, try again in a bit';
+				itemScope.item.type = ' '
+			});
         }
       },
       calculateItemHeight: function(index) {
@@ -79,9 +91,19 @@ document.addEventListener('deviceready', function () {
         console.log("Destroyed item #" + index);
       }
     };
+	$scope.showDetails = function(item) {
+		$scope.item = item;
+		//console.log($scope.item);
+		$rootScope.itemScope = $scope.item;
+		myNavigator.pushPage('detail.html');
+	}
   }]);
   
-	// controller.js
+  app.controller('DetailController', ['$scope', '$rootScope', function($scope, $rootScope) {
+   // console.log(":::", $rootScope);
+	
+  }]);
+  
     //Sliding menu controller, swiping management
     app.controller('SlidingMenuController', function($scope){
       
@@ -263,5 +285,22 @@ document.addEventListener('deviceready', function () {
         };
     });
 
+	app.service('sharedModels', ['$scope', function ($scope) {
+
+		'use strict';
+		$scope.itemScope = {};
+		setItemScope = function(params)
+		{
+			$scope.itemScope = params;
+		}
+		
+		getItemScope = function()
+		{
+			return $scope.itemScope;
+		}
+		// Shared Models
+		this.itemScope = {breakfast: 'eggs'};
+
+	}]);
   
 } )();

@@ -1,4 +1,4 @@
-﻿cordova.define("phonegap-plugin-push.PushPlugin", function(require, exports, module) { var myApp = {};
+cordova.define("phonegap-plugin-push.PushPlugin", function(require, exports, module) { var myApp = {};
 var pushNotifications = Windows.Networking.PushNotifications;
 
 var createNotificationJSON = function (e) {

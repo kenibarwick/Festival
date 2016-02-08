@@ -1,4 +1,4 @@
-﻿cordova.define("onesignal-cordova-plugin.OneSignalPushProxy", function(require, exports, module) { 
+cordova.define("onesignal-cordova-plugin.OneSignalPushProxy", function(require, exports, module) { 
 var OneSingal_launchString = "";
 var OneSignal_JSBridge = new OneSignalSDK_WP_WNS_WRTC.WinJSBridge();
 var OneSignal_app_id = null;

@@ -5,16 +5,17 @@
     <meta charset="utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-
-    <!-- JS dependencies (order matters!) -->
+	<meta http-equiv="Content-Security-Policy" content="default-src *; media-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    
+	<!-- JS dependencies (order matters!) -->
     <script src="scripts/platformOverrides.js"></script>
-    <script src='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/js/angular/angular.min.js'></script>
-	<script src='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/js/onsenui.min.js'></script>
+    <script src='lib/angular/angular.min.js'></script>
+	<script src='lib/onsen/js/onsenui.min.js'></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 
 	<!-- CSS dependencies -->
-    <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/css/onsenui.css'>
-	<link rel='stylesheet prefetch' href='https://cdn.rawgit.com/OnsenUI/OnsenUI/1.3.11/build/css/onsen-css-components.css'>
+    <link rel='stylesheet prefetch' href='lib/onsen/css/onsenui.css'>
+	<link rel='stylesheet prefetch' href='lib/onsen/css/onsen-css-components.css'>
 
     <!-- CSP support mode (required for Windows Universal apps) -->
     <link rel="stylesheet" href="lib/angular/angular-csp.css" />
@@ -51,7 +52,7 @@
             color: #fff;
         }
 
-        .menu-item {
+         .menu-item {
             padding: 0 0 0 20px;
             line-height: 52px;
             height: 52px;
@@ -180,23 +181,22 @@
 
 </head>
 
-<body>
+<body ng-csp>
     <!-- Cordova reference -->
     <script src="scripts/index.js"></script>
     <!-- -->
     <ons-sliding-menu menu-page="menu.html" main-page="welcome.html" side="left"
-                      var="menu" type="reveal" max-slide-distance="260px" swipeable="true">
-    </ons-sliding-menu>
-
+                      var="menu" type="reveal" max-slide-distance="210px" swipeable="true">
+    </ons-sliding-menu>	
     <ons-template id="menu.html">
         <ons-page modifier="menu-page">
-            <ons-toolbar modifier="transparent"></ons-toolbar>
-
+			<img ng-src="images/200_icon.png" class="logo" onclick="menu.setMainPage('welcome.html', {closeMenu: true}) />
+            <ons-toolbar modifier="transparent"></ons-toolbar>			
             <ons-list class="menu-list">
                 <ons-list-item class="menu-item" ng-click="menu.setMainPage('artists.html', {closeMenu: true})">
 					<ons-row>
 						<ons-col width="40px">
-							<ons-icon icon="fa-user"></ons-icon>
+							<ons-icon icon="fa-user fa-fw"></ons-icon>
 						</ons-col>
 						<ons-col width="80px">
 							Artists			
@@ -210,7 +210,7 @@
                 <ons-list-item class="menu-item" ng-click="menu.setMainPage('venues.html', {closeMenu: true})">
 					<ons-row>
 						<ons-col width="40px">
-							<ons-icon icon="fa-building"></ons-icon>
+							<ons-icon icon="fa-building fa-fw"></ons-icon>
 						</ons-col>
 						<ons-col width="80px">
 							Venues			
@@ -239,7 +239,18 @@
             <br>
 
             <ons-list class="bottom-menu-list">
-                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('location.html', {closeMenu: true})">                    
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('attractions.html', {closeMenu: true})">                    
+					<ons-row>
+						<ons-col width="40px">
+							<ons-icon icon="fa-bank"></ons-icon>
+						</ons-col>
+						<ons-col width="80px">
+							Attractions			
+						</ons-col>  
+					</ons-row>	
+                </ons-list-item>
+				
+				<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('location.html', {closeMenu: true})">                    
 					<ons-row>
 						<ons-col width="40px">
 							<ons-icon icon="fa-location-arrow"></ons-icon>
@@ -253,7 +264,7 @@
                 <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('sitemap.html', {closeMenu: true})">
                     <ons-row>
 						<ons-col width="40px">
-							<ons-icon icon="fa-map-marker"></ons-icon>
+							<ons-icon icon="fa-car"></ons-icon>
 						</ons-col>
 						<ons-col width="80px">
 							Site Map
@@ -321,24 +332,24 @@
 					<div class="center">Artists</div>
 				</ons-toolbar>			
 				<ons-list ng-controller="MyCtrl">
-					<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate"
-									ng-click="myNavigator.pushPage('detail.html', {item: '{{item.index}}'})" >
+					<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate" 
+									ng-model="input.name" ng-model="input.desc" ng-click="showDetails(item)"  >
 						<ons-row>
 							<ons-col width="80px">
-								<img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum"></img>
+								<img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum" />
 							</ons-col>
 							<ons-col >
 								<header>
 									<div ng-show="item.name==''">
-										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
+										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</span></p>
 									</div><span class="item-name" data-autodividers="true";>{{item.name}}</span>
 									<div ng-show="item.type==''">
-										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
+										<p><span style='opacity: 0.7;'></p>
 									</div>
 									<span class="item-type">{{item.type}}</span>
 								</header>
 								<div ng-show="item.desc==' '">
-									<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</p></span>
+									<p><span style='opacity: 0.7;'></p>
 								</div>
 								<p class="item-desc">{{item.desc}}</p>
 							</ons-col>
@@ -349,31 +360,30 @@
 		</ons-navigator>
     </ons-template>
 	
-	 <ons-template id="detail.html">
-        <ons-page>
+	 <ons-template id="detail.html">	 
+        <ons-page ng-controller="DetailController">
 		<ons-toolbar>
                 <div class="left"><ons-back-button>Back</ons-back-button></div>
                 <div class="center">Details</div>
 				<div class="right"><ons-icon icon="fa-favourite"></ons-icon></div>
-            </ons-toolbar>
-
+            </ons-toolbar>			
             <ons-list modifier="inset" style="margin-top: 10px">
                 <ons-list-item>
                     <ons-row>
 						<ons-col width="100%">
-							<img ng-src="http://lorempixel.com/320/240/?4"></img>
+							<img ng-src="http://lorempixel.com/320/240/?{{itemScope.index}}" />
                             <header>
-                                <span class="item-title">item.name{{item.name}}</span>
-                                <span class="item-type">item.type{{item.name}}</span>
+                                <span class="item-title">{{itemScope.name}}</span>
+                                <span class="item-type">{{itemScope.type}}</span>
                             </header>
-                            <p class="item-details-desc">{{item.desc}}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            <p class="item-details-desc">{{itemScope.desc}}</p>
                         </ons-col>
                     </ons-row>
                 </ons-list-item>
 
                 <ons-list-item modifier="chevron" ng-click="cycleFavourite()">
                     <ons-icon icon="fa-external-link" fixed-width="true" style="color: #ccc"></ons-icon>
-                    external-link {{item.link}}
+                    external-link {{itemScope.link}}
                 </ons-list-item>
             </ons-list>
 
@@ -383,25 +393,42 @@
     </ons-template>
 	
     <ons-template id="venues.html">
-        <ons-page>
-            <ons-toolbar>
-                <div class="left">
-                    <ons-toolbar-button ng-click="menu.toggle()">
-                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-                <div class="center">Venues</div>
-            </ons-toolbar>
-
-            <ons-row style="margin-top: 100px; text-align: center;">
-                <ons-col>
-                    <ons-button modifier="light" ng-click="menu.toggleMenu()">
-                        Toggle Menu
-                    </ons-button>
-                </ons-col>
-            </ons-row>
-
-        </ons-page>
+		<ons-page>
+				<ons-toolbar>
+					<div class="left">
+						<ons-toolbar-button ng-click="menu.toggle()">
+							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+					<div class="center">Venues</div>
+				</ons-toolbar>			
+				<ons-list ng-controller="MyCtrl">
+					<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate" 
+									ng-model="input.name" ng-model="input.desc" ng-click="showDetails(item)"  >
+						<ons-row>
+							<ons-col width="80px">
+								<img ng-src="http://lorempixel.com/60/60/?{{item.index}}" class="item-thum" />
+							</ons-col>
+							<ons-col >
+								<header>
+									<div ng-show="item.name==''">
+										<p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> loading bacon...</span></p>
+									</div><span class="item-name" data-autodividers="true";>{{item.name}}</span>
+									<div ng-show="item.type==''">
+										<p><span style='opacity: 0.7;'></p>
+									</div>
+									<span class="item-type">{{item.type}}</span>
+								</header>
+								<div ng-show="item.desc==' '">
+									<p><span style='opacity: 0.7;'></p>
+								</div>
+								<p class="item-desc">{{item.desc}}</p>
+							</ons-col>
+						</ons-row>
+					</ons-list-item>
+				</ons-list>
+			</ons-page>
+		</ons-navigator>
     </ons-template>
 	
 	    <ons-template id="dates.html">
@@ -454,6 +481,26 @@
 		<p style="padding-top: 100px; color: #999; text-align: center">Sunday</p>
 	</ons-template>
 
+	    <ons-template id="attractions.html">
+        <ons-page>
+				<ons-toolbar>
+					<div class="left">
+						<ons-toolbar-button ng-click="menu.toggle()">
+							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+					<div class="center">Attractions</div>
+				</ons-toolbar>	
+
+            <ons-row style="margin-top: 100px; text-align: center;">
+                <ons-col>
+					The different areas
+                </ons-col>
+            </ons-row>
+
+        </ons-page>
+    </ons-template>
+	
     <ons-template id="location.html">
 		<ons-navigator ng-controller="MapController">
         <ons-page>
@@ -574,7 +621,7 @@
 		<ons-list modifier="inset" class="settings-list">
         <ons-list-item>
           <ons-icon icon="fa-paper-plane" style="opacity: 0.8"></ons-icon> Notifications
-          
+          <ons-switch modifier="list-item" checked></ons-switch>
         </ons-list-item>
       </ons-list>
       <br>

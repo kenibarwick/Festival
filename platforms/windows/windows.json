@@ -27,6 +27,9 @@
         },
         "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "Chilled in a Field Festival 2016"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "Chilled in a Field Festival 2016"
         }
     },
     "dependent_plugins": {},
@@ -66,6 +69,7 @@
     ],
     "plugin_metadata": {
         "phonegap-plugin-push": "1.4.5",
-        "onesignal-cordova-plugin": "1.9.4"
+        "onesignal-cordova-plugin": "1.9.4",
+        "cordova-plugin-whitelist": "1.2.0"
     }
 }

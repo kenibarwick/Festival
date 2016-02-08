@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="OneSignalSDK">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/OneSignalSDK.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
