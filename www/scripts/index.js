@@ -22,11 +22,29 @@ document.addEventListener('deviceready', function () {
 }, false);
 	
     function onDeviceReady() {
+		console.log("start notification"); 
         // Handle the Cordova pause and resume events
         document.addEventListener( 'pause', onPause.bind( this ), false );
         document.addEventListener( 'resume', onResume.bind( this ), false );
 
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+		window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});		
+		
+		var notificationOpenedCallback = function(jsonData) { 
+		onsole.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData)); 
+		window.plugins.OneSignal.init("1333050c-8c04-4ee1-86e6-3e7dc78686ca", 
+                              {googleProjectNumber: "298045474104"}, 
+                              notificationOpenedCallback);
+
+							  
+		// Show an alert box if a notification comes in when the user is in your app. 
+		window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+		console.log("end notification");
+
+		}, false);
+							  
+  };
 
     };
 
