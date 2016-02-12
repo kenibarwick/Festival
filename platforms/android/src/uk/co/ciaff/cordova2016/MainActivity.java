@@ -19,16 +19,89 @@
 
 package uk.co.ciaff.cordova2016;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
-import org.apache.cordova.*;
+import android.widget.Toast;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.microsoft.windowsazure.messaging.NotificationHub;
+import com.microsoft.windowsazure.notifications.NotificationsManager;
+
+import org.apache.cordova.CordovaActivity;
 
 public class MainActivity extends CordovaActivity
 {
+    private String SENDER_ID = "65725002743";
+    private GoogleCloudMessaging gcm;
+    private NotificationHub hub;
+    private String HubName = "ciaff";
+    private String HubListenConnectionString = "Endpoint=sb://ciaff-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=+oUq1uw+Xgc3HIEHnku3czNp0cbYxry/YQs8bN+aPyo=";
+    private static Boolean isVisible = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        MyHandler.mainActivity = this;
+        NotificationsManager.handleNotifications(this, SENDER_ID, MyHandler.class);
+        gcm = GoogleCloudMessaging.getInstance(this);
+        hub = new NotificationHub(HubName, HubListenConnectionString, this);
+        registerWithNotificationHubs();
+
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void registerWithNotificationHubs() {
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object... params) {
+                try {
+                    String regid = gcm.register(SENDER_ID);
+                    ToastNotify("Registered Successfully - RegId : " +
+                            hub.register(regid).getRegistrationId());
+                } catch (Exception e) {
+                    ToastNotify("Registration Exception Message - " + e.getMessage());
+                    return e;
+                }
+                return null;
+            }
+        }.execute(null, null, null);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        isVisible = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isVisible = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isVisible = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isVisible = false;
+    }
+
+    public void ToastNotify(final String notificationMessage)
+    {
+        if (isVisible == true)
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(MainActivity.this, notificationMessage, Toast.LENGTH_LONG).show();
+                }
+            });
     }
 }

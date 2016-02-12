@@ -7,10 +7,10 @@
         "files": {}
     },
     "installed_plugins": {
-        "onesignal-cordova-plugin": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "uk.co.ciaff.cordova2016"
         },
-        "cordova-plugin-whitelist": {
+        "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "uk.co.ciaff.cordova2016"
         }
     },
